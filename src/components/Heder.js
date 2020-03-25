@@ -66,12 +66,8 @@ const Heder = () =>{
         <div className='img-logo-favorites'>
           <img className='img' src={star} alt="favorites"/>
         </div>
-
       </HederContainer >
     </div>
   )
-
-
-
 }
 export default Heder;
