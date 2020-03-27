@@ -1,5 +1,10 @@
-import React from 'react';
+import React,{useState} from 'react';
 import styled from 'styled-components';
+
+import Axios from 'axios';
+import Crypto from 'crypto-js';
+
+// import {fetchHeroes,fetchHero} from '../controller/fech';
 import { colorHeder } from '../styles/generalConstantStyles.js';
 
 import logo from '../utils/img/marvel-logo.png';
@@ -16,7 +21,6 @@ const HederContainer = styled.div`
   
   .img-logo{
     grid-column: 1 / 2;
-   
   }
   .img{
     height: 35px;
@@ -39,7 +43,6 @@ const HederContainer = styled.div`
   input:focus {
     outline: none;
   }
-
   input:hover{
     border:none;
   }
@@ -52,21 +55,59 @@ const HederContainer = styled.div`
 
 
 const Heder = () =>{
+  const [hero , setHero] = useState('');
 
+  const handleInput = (e) =>{
+    let character = e.target.value;
+    let i = e.keyCode;
+    setHero(character);
+    console.log(hero);
+    console.log(i);
+  }
+  const submit = (event) =>{
+    event.preventDefault();
+    if(hero.length >= 3){
+      const API_KEY = '2dc9ce9f3db383f25c333aa91d066dcf';
+      const PRIV_KEY = 'ff5b9b365db19d96f6187e51c4b00217adacf49e';
+      const URI = 'http://getway.marvel.com/v1/public/characters/';    
+      const ts = new Date().getTime();
+      let hash = Crypto.MD5(ts+ PRIV_KEY + API_KEY);
+      hash = hash.toString(Crypto.enc.Hex);
+      Axios.get(URI+1009351+"?apikey=" + API_KEY + "&ts=" + ts + "&hash=" + hash)
+        .then(res => console.log(res.data))
+        .catch(function(error) {
+          console.log(error);
+        })
+      // Axios.get('https://www.omdbapi.com/?apikey=20dac387&s=hulk')
+      // .then(res => console.log(res.data));
+
+
+      // console.log(hero);
+      // // let data = fetchHeroes(hero);
+      // fetchHero(1009351).then(data => console.log(data));
+      // // console.log(data);
+    }
+  }
+  
+  
+  
+  
   return(
     <div>
+      <form onSubmit={submit}>
       <HederContainer >
         <div className='img-logo'>
           <img  className='img' src={logo} alt="logo"/>
         </div>
         <div className='seeker'>
           <img  src={lupa}  alt='buscar'/>
-          <input type="text" placeholder="Buscar"/>
+          <input onChange={handleInput} type="text" placeholder="Buscar"/>
         </div>
         <div className='img-logo-favorites'>
           <img className='img' src={star} alt="favorites"/>
         </div>
       </HederContainer >
+      </form>
     </div>
   )
 }
