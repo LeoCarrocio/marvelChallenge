@@ -1,5 +1,6 @@
 import React,{useState} from 'react';
 import styled from 'styled-components';
+import {fetchHeroes} from '../../controller/fech';
 
 import Card from '../../components/Card'; 
 
@@ -42,12 +43,17 @@ const HomeContainers = styled.div`
 `
 
 const Home = () =>{
-  const [personajes , setPersonajes]= useState(cardImgPrueva)
+  const [character , setCharacter]= useState(cardImgPrueva)
 
+  
+  
+  
+  
+  
   return(
     
     <HomeContainers>
-      {personajes.map((personaje) =>{
+      {character.map((personaje) =>{
         return <Card key={personaje.id} character={personaje}/>
         })
       }

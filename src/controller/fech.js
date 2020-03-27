@@ -9,9 +9,10 @@ export const fetchHero = (id) =>{
   const ts = new Date().getTime();
   let hash = Crypto.MD5(ts+ PRIV_KEY + API_KEY);
   hash = hash.toString(Crypto.enc.Hex);
+  console.log(`${URI}${id}?apiKey=${API_KEY}&ts=${ts}&hash=${hash}`);
 
-  return Axios.get(`${URI}${id}?apiKey=${API_KEY}&ts=${ts}&hash=${hash}`).then(res => res.data);
-
+  // return Axios.get(`${URI}${id}?apiKey=${API_KEY}&ts=${ts}&hash=${hash}`).then(res => res.data.data.results);
+  return Axios.get(URI + id + "?apikey=" + API_KEY + "&ts" + ts + "&hash=" + hash).then(res => res.data.data.results)
 }
 
 export const fetchHeroes = (name) =>{
@@ -19,6 +20,6 @@ export const fetchHeroes = (name) =>{
   let hash = Crypto.MD5(ts+ PRIV_KEY + API_KEY);
   hash = hash.toString(Crypto.enc.Hex);
 
-  return Axios.get(`${URI}${name}?apiKey=${API_KEY}&ts=${ts}&hash=${hash}`).then(res => res.data);
-
+  return Axios.get(`${URI}${name}&apiKey=${API_KEY}&ts=${ts}&hash=${hash}`).then(res => res.data.data.results);
+  // return Axios.get(URI + )
 }
