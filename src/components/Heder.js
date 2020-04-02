@@ -50,6 +50,9 @@ const HederContainer = styled.div`
     grid-column: 3 / 4;
     height: 35px;
   }
+  img-logo-favorites bottom{
+    border: none;
+  }
 
 `
 
@@ -104,7 +107,9 @@ const Heder = () =>{
           <input onChange={handleInput} type="text" placeholder="Buscar"/>
         </div>
         <div className='img-logo-favorites'>
-          <img className='img' src={star} alt="favorites"/>
+          <button>
+            <img className='img' src={star} alt="favorites"/>
+          </button>
         </div>
       </HederContainer >
       </form>

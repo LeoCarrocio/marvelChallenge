@@ -4,10 +4,10 @@ import styled from 'styled-components';
 import { colorBackgraund } from './styles/generalConstantStyles';
 
 
-
 import Heder from './components/Heder';
 import Home from './views/home/Home';
 import Favorites from './views/favorites/Favorites';
+
 
 const Contains = styled.div`
   display: grid;
