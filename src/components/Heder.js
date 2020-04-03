@@ -1,6 +1,6 @@
 import React,{useState} from 'react';
 import styled from 'styled-components';
-
+import { Link } from 'react-router-dom';
 import Axios from 'axios';
 import Crypto from 'crypto-js';
 
@@ -100,16 +100,18 @@ const Heder = () =>{
       <form onSubmit={submit}>
       <HederContainer >
         <div className='img-logo'>
-          <img  className='img' src={logo} alt="logo"/>
+          <Link to={'/'}>
+            <img  className='img' src={logo} alt="logo"/>
+          </Link>
         </div>
         <div className='seeker'>
           <img  src={lupa}  alt='buscar'/>
           <input onChange={handleInput} type="text" placeholder="Buscar"/>
         </div>
         <div className='img-logo-favorites'>
-          <button>
+          <Link to={'/favorites'}>
             <img className='img' src={star} alt="favorites"/>
-          </button>
+          </Link>
         </div>
       </HederContainer >
       </form>

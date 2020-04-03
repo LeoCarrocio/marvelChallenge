@@ -1,54 +1,7 @@
-// import React,{ useState, useEffect } from "react";
-// import styled from 'styled-components';
-
-// const ModalContainers = styled.div`
-//   width: 500px;
-//   background: white;
-//   border: 1px solid #ccc;
-//   transition: 1.1s ease-out;
-//   box-shadow: 
-//     -2rem 2rem 2rem rgba(black, 0.2);
-//   filter: blur(0);
-//   transform: scale(1);  
-//   opacity: 1;
-//   visibility: visible;
-//   &.off {
-//     opacity: 0;
-//     visibility: hidden;
-//     filter: blur(8px);
-//     transform: scale(0.33);
-//     box-shadow: 1rem 0 0 rgba(black, 0.2);
-//   }
-
-// `
-
-
-// const Modal = (props) => {
-//   const [show ,setShow] = useState(false);
-
-
-//   useEffect(()=>{
-//     console.log();
-//     setShow(props)
-//   },[props, show]);
-
-//   if(!show){
-//     return null;          
-//   }
-//   return(
-//     <ModalContainers>
-//       <h1>
-//         SOY Modal
-//       </h1>
-//     </ModalContainers>
-    
-//   )
-// }
-// export default Modal;
-
 import React from 'react';
 import ReactDOM from 'react-dom';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 
 const ModalContainers = styled.div`
@@ -125,7 +78,6 @@ img{
 
 const Modal = ({ isShowing, hide , data}) => isShowing ? ReactDOM.createPortal(
   <React.Fragment>
-  {console.log(data)}
       <ModalContainers>
       <div className="modal-overlay"/> 
       <div className="modal-wrapper" aria-modal aria-hidden tabIndex={-1} role="dialog">
@@ -141,6 +93,10 @@ const Modal = ({ isShowing, hide , data}) => isShowing ? ReactDOM.createPortal(
           <p>
            {data.name}
           </p>
+          <button type="button" >
+          <Link to={`/hero/${data.id}`}>view hero</Link>
+          </button>
+
         </div>
       </div>
       </ModalContainers>
