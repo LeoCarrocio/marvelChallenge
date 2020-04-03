@@ -7,7 +7,7 @@ import { colorBackgraund } from './styles/generalConstantStyles';
 import Heder from './components/Heder';
 import Home from './views/home/Home';
 import Favorites from './views/favorites/Favorites';
-
+import Hero from './views/hero/Hero';
 
 const Contains = styled.div`
   display: grid;
@@ -38,6 +38,7 @@ function App() {
           <Switch>
             <Route exact path='/' render={({ history }) => (<Home history={history} />)} />
             <Route exact path='/favorites' render={({ history }) => (<Favorites history={history} />)} />
+            <Route exact path='/hero/:heroId' render={({ history, match }) => (<Hero history={history} heroId={match.heroId}/>)} />
           </Switch>
         </div>
       </Contains>
