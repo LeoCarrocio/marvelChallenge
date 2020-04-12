@@ -1,63 +1,46 @@
 import Axios from 'axios';
 import Crypto from 'crypto-js';
 
+// import {generateRandon} from './general';
+ 
+
+const limit = 100;
+const modifiedSince = 1990;
+
+
 const API_KEY = '2dc9ce9f3db383f25c333aa91d066dcf';
 const PRIV_KEY = 'ff5b9b365db19d96f6187e51c4b00217adacf49e';
-const URI = 'https://getway.marvel.com/v1/public/characters/';
+const HERO_FECH = 'https://gateway.marvel.com:443/v1/public/characters/';
+const HEROS_FECH = 'https://gateway.marvel.com:443/v1/public/characters';
 
-export const fetchHero = (id) =>{
-  const ts = new Date().getTime();
+
+// ?modifiedSince=1990&limit=10&apikey=2dc9ce9f3db383f25c333aa91d066dcf';
+
+
+   
+const hashApi = () =>{
+  let ts = new Date().getTime();
   let hash = Crypto.MD5(ts+ PRIV_KEY + API_KEY);
   hash = hash.toString(Crypto.enc.Hex);
-  console.log(`${URI}${id}?apiKey=${API_KEY}&ts=${ts}&hash=${hash}`);
 
-  // return Axios.get(`${URI}${id}?apiKey=${API_KEY}&ts=${ts}&hash=${hash}`).then(res => res.data.data.results);
-  return Axios.get(URI + id + "?apikey=" + API_KEY + "&ts" + ts + "&hash=" + hash).then(res => res.data.data.results)
+  return {ts , hash}
+}
+
+export const fetchHero = (id) =>{
+  let {ts , hash} = hashApi();
+
+  return Axios.get(HERO_FECH+id,{ params:{ apikey: API_KEY, ts,hash} })
 }
 
 export const fetchHeroes = (name) =>{
-  const ts = new Date().getTime();
-  let hash = Crypto.MD5(ts+ PRIV_KEY + API_KEY);
-  hash = hash.toString(Crypto.enc.Hex);
+  let {ts , hash} = hashApi();
 
-  return Axios.get(`${URI}${name}&apiKey=${API_KEY}&ts=${ts}&hash=${hash}`).then(res => res.data.data.results);
-  // return Axios.get(URI + )
+  return Axios.get(HEROS_FECH,{ params:{ name, apikey: API_KEY, ts,hash} })
 }
 
-
-export const heroFech = () =>{
-  const state = [
-    {
-      id : 0,
-      name: "hulk",
-      img: 'https://wipy.tv/wp-content/uploads/2020/03/pelea-de-hulk-contra-juggernaut.jpg'
-    },
-    {
-      id : 2,
-      name: "hulk",
-      img: 'https://wipy.tv/wp-content/uploads/2020/03/pelea-de-hulk-contra-juggernaut.jpg'
-    },
-    {
-      id : 3,
-      name: "hulk",
-      img: 'https://wipy.tv/wp-content/uploads/2020/03/pelea-de-hulk-contra-juggernaut.jpg'
-    },
-    {
-      id : 4,
-      name: "hulk",
-      img: 'https://wipy.tv/wp-content/uploads/2020/03/pelea-de-hulk-contra-juggernaut.jpg'
-    },
-    {
-      id : 5,
-      name:"hulk",
-      img: 'https://wipy.tv/wp-content/uploads/2020/03/pelea-de-hulk-contra-juggernaut.jpg'
-    },
-  ];
-
-  return new Promise(resolve => {
-    setTimeout(() => {
-      resolve({ data: state });
-    }, 500);
-  });
-
+export const fetchHeroesRandon = () =>{
+  
+  let {ts , hash} = hashApi();
+  // console.log(`https://gateway.marvel.com:443/v1/public/characters?modifiedSince=${modifiedSince}&limit=${limit}&apikey=${API_KEY}&ts=${ts}&hash=${hash}`);
+  return Axios.get(HEROS_FECH,{params:{modifiedSince,limit,apikey: API_KEY, ts,hash}}) 
 }
