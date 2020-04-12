@@ -76,7 +76,7 @@ img{
 }
 `
 
-const Modal = ({ isShowing, hide , data}) => isShowing ? ReactDOM.createPortal(
+const Modal = ({ isShowing, hide ,img ,name}) => isShowing ? ReactDOM.createPortal(
   <React.Fragment>
       <ModalContainers>
       <div className="modal-overlay"/> 
@@ -88,13 +88,13 @@ const Modal = ({ isShowing, hide , data}) => isShowing ? ReactDOM.createPortal(
             </button>
           </div>
           <div className="img-data">
-           <img src={data.img} alt="favorites"/>
+           <img src={img} alt="favorites"/>
           </div>
           <p>
-           {data.name}
+           {name}
           </p>
           <button type="button" >
-          <Link to={`/hero/${data.id}`}>view hero</Link>
+          {/* <Link to={`/hero/${id}`}>view hero</Link> */}
           </button>
 
         </div>

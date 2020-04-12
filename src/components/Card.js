@@ -1,13 +1,15 @@
-import React,{useContext} from 'react';
+import React,{useContext,useState, useEffect} from 'react';
 import styled from 'styled-components';
 // import imgCardPrueva from '../utils/img/img_card_hulk.jpg';
 import star from '../utils/img/star_black.png';
 import Modal from '../components/Modal';
 
-import {HeroContext} from '../context/ContextApp';
+// import {HeroContext} from '../context/ContextApp';
 
 import useModal from '../customHooks/useModal';
+// import Hero from '../views/hero/Hero';
 
+import {urlImg} from  '../controller/general';
 
 
 const CardContainers = styled.div`
@@ -31,10 +33,16 @@ const CardContainers = styled.div`
 `
 
 const Card = (props) =>{
+  const  [hero , setHero] = useState({})
   // const hero = useContext(HeroContext);
   // console.log(hero);
-  const {name,img} = props.character;
+  const {name, thumbnail} = props.character;
   const {isShowing, toggle} = useModal();
+
+  useEffect(()=>{
+    setHero(urlImg(thumbnail))
+  },[])
+
 
   // const showModa =()=>{
   //   console.log('abrinedo modal');
@@ -45,7 +53,7 @@ const Card = (props) =>{
   return(
 
     
-    <CardContainers bg = {img} onClick={toggle}>
+    <CardContainers bg = {hero} onClick={toggle}>
       
       <div className="favorite">
         <img src={star} alt='derir a favoritos'/>
@@ -55,7 +63,9 @@ const Card = (props) =>{
       <Modal
         isShowing={isShowing}
         hide={toggle}
-        data={props.character}
+        img={hero}
+        name={name}
+
       />
       </div>
      
