@@ -1,8 +1,12 @@
-import React from 'react';
+import React,{useState, useEffect} from 'react';
 import { Route, Switch} from 'react-router-dom';
 import styled from 'styled-components';
 import { colorBackgraund } from './styles/generalConstantStyles';
 
+import {HeroContext} from './context/ContextApp';
+
+import {fetchHeroesRandon} from './controller/fech';
+import {generateRandon} from './controller/general';
 
 import Heder from './components/Heder';
 import Home from './views/home/Home';
@@ -28,9 +32,33 @@ const Contains = styled.div`
 `
 
 function App() {
+
+  const [character , setCharacter]= useState([]);
+
+  const hero = async () =>{
+    let res = await fetchHeroesRandon()
+    return res;
+  } 
+  const genrateRes =(arry) =>{
+    let res = [];
+    for (let i = 0; i <= 7; i++){
+      let n = generateRandon();
+      res.push(arry[n]);
+    }
+    return res;
+  }
+  useEffect(()=>{
+    hero().then(res => setCharacter(genrateRes(res.data.data.results)));
+    // setCharacter(hero());
+  },[])
+
+
+
+
   return (
     <div>
       <Contains>
+      <HeroContext.Provider value ={character}>
         <div className = 'heder-contins'>
           <Heder />
         </div>
@@ -41,6 +69,7 @@ function App() {
             <Route exact path='/hero/:heroId' render={({ history, match }) => (<Hero history={history} heroId={match.heroId}/>)} />
           </Switch>
         </div>
+        </HeroContext.Provider>
       </Contains>
     </div>
 );

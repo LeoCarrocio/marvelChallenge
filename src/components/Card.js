@@ -1,4 +1,4 @@
-import React,{useContext,useState, useEffect} from 'react';
+import React,{useState, useEffect} from 'react';
 import styled from 'styled-components';
 // import imgCardPrueva from '../utils/img/img_card_hulk.jpg';
 import star from '../utils/img/star_black.png';
@@ -34,27 +34,17 @@ const CardContainers = styled.div`
 
 const Card = (props) =>{
   const  [hero , setHero] = useState({})
-  // const hero = useContext(HeroContext);
-  // console.log(hero);
   const {name, thumbnail} = props.character;
+  const key = props.index;
   const {isShowing, toggle} = useModal();
 
   useEffect(()=>{
     setHero(urlImg(thumbnail))
   },[])
-
-
-  // const showModa =()=>{
-  //   console.log('abrinedo modal');
-  //   return <Modal modalShow={true}/>
-    
-  // }
   
   return(
 
-    
     <CardContainers bg = {hero} onClick={toggle}>
-      
       <div className="favorite">
         <img src={star} alt='derir a favoritos'/>
       </div>
@@ -65,10 +55,9 @@ const Card = (props) =>{
         hide={toggle}
         img={hero}
         name={name}
-
+        index ={key}
       />
       </div>
-     
      </CardContainers>  
     
   )
