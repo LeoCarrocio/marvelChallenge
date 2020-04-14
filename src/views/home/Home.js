@@ -1,13 +1,10 @@
-import React,{useState , useEffect} from 'react';
+import React,{ useEffect,useContext} from 'react';
 import styled from 'styled-components';
-import {fetchHeroesRandon} from '../../controller/fech';
 import {HeroContext} from '../../context/ContextApp';
 
-import {generateRandon} from '../../controller/general';
+// import {generateRandon} from '../../controller/general';
 
 import Card from '../../components/Card'; 
-// import Modal from '../../components/Modal';
-
 
 const HomeContainers = styled.div`
   display: grid;
@@ -19,37 +16,27 @@ const HomeContainers = styled.div`
 `
 
 const Home = () =>{
-  const [character , setCharacter]= useState([]);
-
-  const hero = async () =>{
-    let res = await fetchHeroesRandon()
-    return res;
-  } 
-  const genrateRes =(arry) =>{
-    let res = [];
-    for (let i = 0; i <= 7; i++){
-      let n = generateRandon();
-      res.push(arry[n]);
-    }
-    return res;
-  }
+  // const [character , setCharacter]= useState();
+  const hero = useContext(HeroContext);
 
   useEffect(()=>{
-    hero().then(res => setCharacter(genrateRes(res.data.data.results)));
+    // hero().then(res => setCharacter(genrateRes(res.data.data.results)));
     // setCharacter(hero());
+
   },[])
 
   return(
 
-    <HeroContext.Provider value ={character}>
+    // <HeroContext.Provider value ={character}>
+    //   { console.log(character)}
     <HomeContainers>
-      {character.map((personaje) =>{
-        return <Card key={personaje.id} character={personaje}/>
+      {hero.map((personaje, index) =>{
+        return <Card key={personaje.id} character={personaje} index={index} />
         })
       }
     </HomeContainers>
 
-    </HeroContext.Provider>
+    // </HeroContext.Provider>
     
   )
 }

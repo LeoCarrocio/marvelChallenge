@@ -1,9 +1,6 @@
 import Axios from 'axios';
 import Crypto from 'crypto-js';
 
-// import {generateRandon} from './general';
- 
-
 const limit = 100;
 const modifiedSince = 1990;
 
@@ -12,11 +9,6 @@ const API_KEY = '2dc9ce9f3db383f25c333aa91d066dcf';
 const PRIV_KEY = 'ff5b9b365db19d96f6187e51c4b00217adacf49e';
 const HERO_FECH = 'https://gateway.marvel.com:443/v1/public/characters/';
 const HEROS_FECH = 'https://gateway.marvel.com:443/v1/public/characters';
-
-
-// ?modifiedSince=1990&limit=10&apikey=2dc9ce9f3db383f25c333aa91d066dcf';
-
-
    
 const hashApi = () =>{
   let ts = new Date().getTime();
