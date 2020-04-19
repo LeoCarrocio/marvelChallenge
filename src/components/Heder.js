@@ -1,6 +1,8 @@
 import React,{useState} from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import { useHistory } from "react-router-dom";
+
 // import Axios from 'axios';
 // import Crypto from 'crypto-js';
 
@@ -57,18 +59,21 @@ const HederContainer = styled.div`
 
 const Heder = () =>{
   const [hero , setHero] = useState('');
+  let history = useHistory();
 
   const handleInput = (e) =>{
     let character = e.target.value;
     setHero(character);
   }
   
-  const submit = async (event) =>{
+  const submit = (event) =>{
     event.preventDefault();
     if(hero.length >= 3){
 
-      const result = await fetchHeroes(hero);
-      console.log(result);
+      // const result = await fetchHeroes(hero);
+      // console.log(result.data.data);
+      history.push(`/serch/${hero}`);
+
     }
   }
  
@@ -83,7 +88,7 @@ const Heder = () =>{
         </div>
         <div className='seeker'>
           <img  src={lupa}  alt='buscar'/>
-          <input onChange={handleInput} type="text" placeholder="Buscar"/>
+          <input onChange={handleInput} type="text" placeholder="Serch"/>
         </div>
         <div className='img-logo-favorites'>
           <Link to={'/favorites'}>
