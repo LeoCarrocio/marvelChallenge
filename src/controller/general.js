@@ -15,3 +15,8 @@ export const urlImg = ({path,extension}) =>{
   return url+idImagen+"/"+portal+"."+extension;
 
 }
+
+export const urlImgComic = (url) =>{
+  let medium = "/portrait_medium.jpg"
+ return url+ medium 
+}

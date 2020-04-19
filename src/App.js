@@ -12,6 +12,7 @@ import Heder from './components/Heder';
 import Home from './views/home/Home';
 import Favorites from './views/favorites/Favorites';
 import Hero from './views/hero/Hero';
+import Herosearch from './views/heroSearch/HeroSearch';
 
 const Contains = styled.div`
   display: grid;
@@ -67,6 +68,7 @@ function App() {
             <Route exact path='/' render={({ history }) => (<Home history={history} />)} />
             <Route exact path='/favorites' render={({ history }) => (<Favorites history={history} />)} />
             <Route exact path='/hero/:heroId' render={({ history, match }) => (<Hero history={history} heroId={match.heroId}/>)} />
+            <Route exact path='/serch/:hero' render={({history, match})=>(<Herosearch history={history} hero={match}/>)} />
           </Switch>
         </div>
         </HeroContext.Provider>

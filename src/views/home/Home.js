@@ -15,8 +15,10 @@ const HomeContainers = styled.div`
 
 `
 
-const Home = () =>{
+const Home = (props) =>{
   // const [character , setCharacter]= useState();
+  // console.log(props)
+
   const hero = useContext(HeroContext);
 
   useEffect(()=>{
