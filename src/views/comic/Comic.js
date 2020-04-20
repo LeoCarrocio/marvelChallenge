@@ -2,7 +2,7 @@ import React from 'react';
 
 
 
-const Comic = () =>{
+const Comic = (props) =>{
 
   return(
     <div>

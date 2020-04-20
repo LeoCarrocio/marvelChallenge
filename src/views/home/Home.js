@@ -1,8 +1,7 @@
-import React,{ useEffect,useContext} from 'react';
+import React,{ useContext} from 'react';
 import styled from 'styled-components';
 import {HeroContext} from '../../context/ContextApp';
 
-// import {generateRandon} from '../../controller/general';
 
 import Card from '../../components/Card'; 
 
@@ -16,29 +15,18 @@ const HomeContainers = styled.div`
 `
 
 const Home = (props) =>{
-  // const [character , setCharacter]= useState();
-  // console.log(props)
-
+ 
   const hero = useContext(HeroContext);
-
-  useEffect(()=>{
-    // hero().then(res => setCharacter(genrateRes(res.data.data.results)));
-    // setCharacter(hero());
-
-  },[])
-
+  
   return(
 
-    // <HeroContext.Provider value ={character}>
-    //   { console.log(character)}
     <HomeContainers>
+
       {hero.map((personaje, index) =>{
-        return <Card key={personaje.id} character={personaje} index={index} />
+        return <Card key={index} character={personaje} index={index} />
         })
       }
     </HomeContainers>
-
-    // </HeroContext.Provider>
     
   )
 }

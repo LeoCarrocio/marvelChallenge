@@ -13,6 +13,7 @@ import Home from './views/home/Home';
 import Favorites from './views/favorites/Favorites';
 import Hero from './views/hero/Hero';
 import Herosearch from './views/heroSearch/HeroSearch';
+import Waiting from './components/Waiting';
 
 const Contains = styled.div`
   display: grid;
@@ -50,6 +51,7 @@ function App() {
   }
   useEffect(()=>{
     hero().then(res => setCharacter(genrateRes(res.data.data.results)));
+    // console.log(character);
     // setCharacter(hero());
   },[])
 
@@ -59,6 +61,7 @@ function App() {
   return (
     <div>
       <Contains>
+        {character.length !== 0 ?
       <HeroContext.Provider value ={character}>
         <div className = 'heder-contins'>
           <Heder />
@@ -72,6 +75,7 @@ function App() {
           </Switch>
         </div>
         </HeroContext.Provider>
+        : <Waiting />}
       </Contains>
     </div>
 );

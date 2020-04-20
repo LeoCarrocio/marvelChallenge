@@ -17,17 +17,10 @@ const Contains = styled.div`
   .data-hero{
     grid-column: 2 / 3;
   }
-
-
-
 `
 
-
-
-
-const Hero = (props) =>{
-  // const [hero, setHero] = useState();
-  // console.log(props)
+const Hero = () =>{
+ 
   const hero = useContext(HeroContext);
   const {heroId} = useParams();
   const character= hero[parseInt(heroId,10)];

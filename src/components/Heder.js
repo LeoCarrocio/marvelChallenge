@@ -2,11 +2,6 @@ import React,{useState} from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { useHistory } from "react-router-dom";
-
-// import Axios from 'axios';
-// import Crypto from 'crypto-js';
-
-import {fetchHeroes , fetchHero} from '../controller/fech';
 import { colorHeder } from '../styles/generalConstantStyles.js';
 
 import logo from '../utils/img/marvel-logo.png';
@@ -69,11 +64,7 @@ const Heder = () =>{
   const submit = (event) =>{
     event.preventDefault();
     if(hero.length >= 3){
-
-      // const result = await fetchHeroes(hero);
-      // console.log(result.data.data);
       history.push(`/serch/${hero}`);
-
     }
   }
  
