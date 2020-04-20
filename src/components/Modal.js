@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+
+import CardComic from '../components/CardComic';
 
 
 const ModalContainers = styled.div`
@@ -76,7 +77,7 @@ img{
 }
 `
 
-const Modal = ({ isShowing, hide ,img ,name,index}) => isShowing ? ReactDOM.createPortal(
+const Modal = ({ isShowing, hide,name, comics}) => isShowing ? ReactDOM.createPortal(
   <React.Fragment>
       <ModalContainers>
       <div className="modal-overlay"/> 
@@ -87,16 +88,10 @@ const Modal = ({ isShowing, hide ,img ,name,index}) => isShowing ? ReactDOM.crea
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <div className="img-data">
-           <img src={img} alt="favorites"/>
-          </div>
           <p>
            {name}
           </p>
-          <button type="button" >
-           <Link to={`/hero/${index}`}>view hero {name}</Link>
-          </button>
-
+          <CardComic comics={comics}/>
         </div>
       </div>
       </ModalContainers>

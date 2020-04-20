@@ -1,14 +1,9 @@
 import React,{useState, useEffect} from 'react';
 import styled from 'styled-components';
-// import imgCardPrueva from '../utils/img/img_card_hulk.jpg';
+
 import star from '../utils/img/star_black.png';
 import Modal from '../components/Modal';
-
-// import {HeroContext} from '../context/ContextApp';
-
 import useModal from '../customHooks/useModal';
-// import Hero from '../views/hero/Hero';
-
 import {urlImg} from  '../controller/general';
 
 
@@ -33,6 +28,9 @@ const CardContainers = styled.div`
 `
 
 const Card = (props) =>{
+
+
+  const [comics, setComics]=useState([])
   const  [hero , setHero] = useState({})
   const {name, thumbnail} = props.character;
   const key = props.index;
@@ -40,6 +38,7 @@ const Card = (props) =>{
 
   useEffect(()=>{
     setHero(urlImg(thumbnail))
+    setComics(props.character.comics.items);
   },[])
   
   return(
@@ -56,6 +55,7 @@ const Card = (props) =>{
         img={hero}
         name={name}
         index ={key}
+        comics= {comics}
       />
       </div>
      </CardContainers>  

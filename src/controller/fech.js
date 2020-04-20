@@ -22,12 +22,10 @@ const hashApi = () =>{
 
 export const fetchHero = (id) =>{
   let {ts , hash} = hashApi();
-
   return Axios.get(HERO_FECH+id,{ params:{ apikey: API_KEY, ts,hash} })
 }
 
 export const fetchHeroes = (name) =>{
-  // console.log(name);
   let {ts , hash} = hashApi();
   return Axios.get(HEROS_FECH,{ params:{ nameStartsWith:name,orderBy:'-modified',limit:8, apikey: API_KEY, ts,hash} })
 }
@@ -35,7 +33,6 @@ export const fetchHeroes = (name) =>{
 export const fetchHeroesRandon = () =>{
   
   let {ts , hash} = hashApi();
-  // console.log(`https://gateway.marvel.com:443/v1/public/characters?modifiedSince=${modifiedSince}&limit=${limit}&apikey=${API_KEY}&ts=${ts}&hash=${hash}`);
   return Axios.get(HEROS_FECH,{params:{modifiedSince,limit,apikey: API_KEY, ts,hash}}) 
 }
 
