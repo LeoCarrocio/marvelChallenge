@@ -17,7 +17,6 @@ const Contains = styled.div`
 
 
 const Herosearch = ({hero}) =>{
-  // console.log(hero.params.hero)
   const [heroserch, setHeroserch]= useState([]);
 
   const searchhero = async (search)=>{

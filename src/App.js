@@ -14,6 +14,7 @@ import Favorites from './views/favorites/Favorites';
 import Hero from './views/hero/Hero';
 import Herosearch from './views/heroSearch/HeroSearch';
 import Waiting from './components/Waiting';
+import Comic from './views/comic/Comic';
 
 const Contains = styled.div`
   display: grid;
@@ -33,8 +34,7 @@ const Contains = styled.div`
 
 `
 
-function App() {
-
+const App = () => {
   const [character , setCharacter]= useState([]);
 
   const hero = async () =>{
@@ -56,8 +56,6 @@ function App() {
   },[])
 
 
-
-
   return (
     <div>
       <Contains>
@@ -72,6 +70,7 @@ function App() {
             <Route exact path='/favorites' render={({ history }) => (<Favorites history={history} />)} />
             <Route exact path='/hero/:heroId' render={({ history, match }) => (<Hero history={history} heroId={match.heroId}/>)} />
             <Route exact path='/serch/:hero' render={({history, match})=>(<Herosearch history={history} hero={match}/>)} />
+            <Route exact path='/comic/:comicId' render={({ history, match }) => (<Comic history={history} heroId={match}/>)} />
           </Switch>
         </div>
         </HeroContext.Provider>
