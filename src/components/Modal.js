@@ -88,9 +88,9 @@ const Modal = ({ isShowing, hide,name, comics}) => isShowing ? ReactDOM.createPo
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <p>
+          <h2>
            {name}
-          </p>
+          </h2>
           <CardComic comics={comics}/>
         </div>
       </div>

@@ -1,7 +1,11 @@
 import React,{useState , useEffect} from 'react';
 import styled from 'styled-components';
+import { useHistory } from "react-router-dom";
+
 
 import ImagCardComic from './ImagCardComic'
+
+import {deconstructId} from '../controller/general'
 
 const Contains = styled.div`
   display: grid;
@@ -17,7 +21,15 @@ const Contains = styled.div`
 
 const CardComic = (comic) =>{
   const [comics , setComics] = useState([]);
+
+  let history = useHistory();
   
+
+  const viewsComic = (e,url) =>{
+    e.preventDefault();
+    let id = deconstructId(url);
+    history.push(`/comic/${id}`);
+  }
 
   useEffect(() => {
     setComics(comic.comics);
@@ -33,7 +45,9 @@ const CardComic = (comic) =>{
              <ImagCardComic  urlComic={items.resourceURI}/>
             </div>
             <div className="titulo">
-              <h3>{items.name}</h3>
+              <button onClick={(e)=>viewsComic(e,items.resourceURI)}>
+                <h3>{items.name}</h3>
+              </button>
             </div>
           </Contains>
         )

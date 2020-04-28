@@ -11,6 +11,7 @@ const API_KEY = '15167e1dfc990dce5f4fe9cfab0ea160';
 const PRIV_KEY = 'dcce00ab8bb1a145c457b9f1abc07261edfb491d';
 const HERO_FECH = 'https://gateway.marvel.com:443/v1/public/characters/';
 const HEROS_FECH = 'https://gateway.marvel.com:443/v1/public/characters';
+const COMIC_ID = 'https://gateway.marvel.com:443/v1/public/comics/'
    
 const hashApi = () =>{
   let ts = new Date().getTime();
@@ -39,4 +40,9 @@ export const fetchHeroesRandon = () =>{
 export const fechComicImg = (url)=>{
   let {ts , hash} = hashApi();
   return Axios.get(url,{ params:{ apikey: API_KEY, ts,hash} })
+}
+
+export const fechComicId = (id) =>{
+  let {ts , hash} = hashApi();
+  return Axios.get(COMIC_ID + id,{ params:{apikey: API_KEY, ts,hash}})
 }

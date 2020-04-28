@@ -9,10 +9,8 @@ const ImagCardComic = ({urlComic}) =>{
   const [imgComic, setImgComic] = useState();
   
   const comicSearch = async (url) =>{
-    console.log(url)
     if(url){
       let res = await fechComicImg(url);
-      console.log(res)
       return res;
     }
   }
