@@ -4,6 +4,10 @@ import styled from 'styled-components';
 
 import CardComic from '../components/CardComic';
 
+import {addFavoritos} from  '../localStorage/storage';
+
+import star from '../utils/img/star_black.png';
+
 
 const ModalContainers = styled.div`
 .modal-overlay { 
@@ -73,11 +77,14 @@ button {
 }
 img{
   height: 22rem;
-
+}
+.img-star{
+  height :40px;
 }
 `
 
-const Modal = ({ isShowing, hide,name, comics}) => isShowing ? ReactDOM.createPortal(
+
+const Modal = ({ isShowing, hide, name, comics,id}) => isShowing ? ReactDOM.createPortal(
   <React.Fragment>
       <ModalContainers>
       <div className="modal-overlay"/> 
@@ -88,6 +95,10 @@ const Modal = ({ isShowing, hide,name, comics}) => isShowing ? ReactDOM.createPo
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
+          <button type="button" onClick={()=>addFavoritos(id)}>
+              <img className="img-star" src={star} alt='aderir a favoritos'/>
+          </button>
+
           <h2>
            {name}
           </h2>
