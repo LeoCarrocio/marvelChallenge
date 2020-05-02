@@ -29,10 +29,9 @@ const CardContainers = styled.div`
 
 const Card = (props) =>{
 
-
   const [comics, setComics]=useState([])
   const  [hero , setHero] = useState({})
-  const {name, thumbnail} = props.character;
+  const {name, thumbnail,id} = props.character;
   const key = props.index;
   const {isShowing, toggle} = useModal();
 
@@ -45,7 +44,7 @@ const Card = (props) =>{
 
     <CardContainers bg = {hero} onClick={toggle}>
       <div className="favorite">
-        <img src={star} alt='derir a favoritos'/>
+        <img src={star} alt='aderir a favoritos'/>
       </div>
       <div className="title">
         {name}
@@ -56,6 +55,7 @@ const Card = (props) =>{
         name={name}
         index ={key}
         comics= {comics}
+        id ={id}
       />
       </div>
      </CardContainers>  
