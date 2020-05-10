@@ -4,7 +4,7 @@ export const generateRandon = () =>{
   return num;
 }
 
-export const urlImg = ({path,extension}) =>{
+export const urlImg = ({path,extension = "jpg"}) =>{
   let url = "http://i.annihil.us/u/prod/marvel/i/mg/";
   let portal = "portrait_incredible";
   let inicio = url.length;
@@ -39,3 +39,4 @@ export const urlImgBig = ({path,extension}) =>{
 
   return url+idImagen+"/"+portal+"."+extension;
 }
+
