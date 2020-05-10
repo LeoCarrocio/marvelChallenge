@@ -14,15 +14,15 @@ const HomeContainers = styled.div`
 
 `
 
-const Home = (props) =>{
+const Home = () =>{
  
   const hero = useContext(HeroContext);
   
   return(
 
     <HomeContainers>
-
       {hero.map((personaje, index) =>{
+        console.log(personaje);
         return <Card key={index} character={personaje} index={index} />
         })
       }
