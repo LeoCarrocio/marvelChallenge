@@ -22,7 +22,6 @@ const Home = () =>{
 
     <HomeContainers>
       {hero.map((personaje, index) =>{
-        console.log(personaje);
         return <Card key={index} character={personaje} index={index} />
         })
       }

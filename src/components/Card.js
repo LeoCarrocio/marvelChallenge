@@ -9,22 +9,34 @@ import {urlImg} from  '../controller/general';
 
 const CardContainers = styled.div`
   display: grid;
-  background-image: url(${(props)=> props.bg});
-  background-position: 0px 0px;
+  place-self: center;
+  /* background-image: url(${(props)=> props.bg}); */
+  /* background-position: 0px 0px;
   background-repeat: no-repeat;
-  background-size: contain;
-  opacity: 1;
+  background-size: contain; */
+  /* opacity: 1; */
  
   .favorite{
     justify-self: end;
   }
   .favorite img{
     height: 30px;
+    position: relative;
+    top: 35px;
   }
   .title{
     justify-self: start;
     align-self: end;
+    color: white;
+    font-size: 100%;;
+    font-family: sans-serif;
+    position: relative;
+    bottom: 40px;
   }
+  .imgCard img{
+    border-radius: 9px;
+  }
+  
 `
 
 const Card = (props) =>{
@@ -46,8 +58,11 @@ const Card = (props) =>{
       <div className="favorite">
         <img src={star} alt='aderir a favoritos'/>
       </div>
+      <div className="imgCard">
+        <img src={hero}  alt ={name}/>
+      </div>
       <div className="title">
-        {name}
+        {name.substring(0,name.indexOf("(")!== -1 ? name.indexOf("("): name.length)}
       <Modal
         isShowing={isShowing}
         hide={toggle}
